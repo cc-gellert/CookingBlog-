@@ -1,0 +1,19 @@
+{
+  "name": "recipeblog",
+  "version": "1.0.0",
+  "description": "RESTful blog for recipes",
+  "main": "app.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cc-gellert/CookingBlog-.git"
+  },
+  "author": "Chloe Gellert",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cc-gellert/CookingBlog-/issues"
+  },
+  "homepage": "https://github.com/cc-gellert/CookingBlog-#readme"
+}

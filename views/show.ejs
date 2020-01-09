@@ -1,0 +1,23 @@
+<% include ./partials/header %> 
+<div>
+	<div>
+		<header>
+			<%= post.title %>
+		</header>
+		<img src='<%= post.image %>'>
+		<div>
+			<span><%= post.created.toDateString(); %></span>
+			<p>
+				<%= post.body; %>
+			</p>
+		</div>
+		<a href="/posts/:id/edit">Edit Post</a>
+		<form method="POST" action="/posts/<%= post._id %>?_method=DELETE" id="delete">
+			<button>
+				Delete Post
+			</button>
+		</form>
+	</div>
+</div>
+
+<% include ./partials/footer %> 

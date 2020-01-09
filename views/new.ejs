@@ -1,0 +1,23 @@
+<% include ./partials/header %>
+<header>Make a New Post</header>
+<div>
+	<form action='/posts' method='POST'>
+		<div>
+			<label>Post Title</label>
+			<input type='text' name='post[title]' placeholder='title'>
+		</div>
+		<div>
+			<label>Image</label>
+			<input type='text' name='post[image]' placeholder='image link'>
+		</div>
+		<div>
+			<label>Post Content</label>
+			<textarea name='post[body]' required></textarea>
+		</div>
+		<button>
+			Submit
+		</button>
+	</form>
+</div>
+
+<% include ./partials/footer %> 

@@ -12,7 +12,8 @@ app.use(sanitizer());
 //connect to database
 mongoose.connect('mongodb+srv://devsquash:flop*973@cluster0-hgvtd.mongodb.net/test?retryWrites=true&w=majority', {
 	useNewUrlParser: true,
-	useCreateIndex: true 
+	useCreateIndex: true,
+	useUnifiedTopology: true
 }).then(() => {
 	console.log('Connected to database'); 
 }).catch((err) => {
@@ -28,6 +29,11 @@ let postSchema = new mongoose.Schema({
 });
 
 let Post = mongoose.model('Post', postSchema); 
+// Post.create({
+// 	title: "Test Blog",
+// 	image: "https://images.unsplash.com/photo-1507048331197-7d4ac70811cf?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=967&q=80",
+// 	body: "This is a test post",
+// }); 
 
 //RESTful Routes
 //Index
@@ -45,7 +51,7 @@ app.post('/posts', (req, res) => {
 		if(err){
 			res.render('new');
 		} else {
-			res.redirect("/posts"); 
+			res.redirect('/posts'); 
 		}
 	});
 });
@@ -63,9 +69,10 @@ app.get('/posts/:id', (req, res) => {
 app.get('/posts/:id/edit', (req, res) => {
 	Post.findById(req.params.id, (err, foundPost) => {
 		if(err){
+			console.log(err); 
 			res.redirect('/posts');
 		} else {
-			res.render('show', {post: foundPost}); 
+			res.render('edit', {post: foundPost}); 
 		}
 	});
 });
@@ -76,22 +83,22 @@ app.put('/posts/:id', (req, res) => {
 		if(err){
 			res.redirect('index');
 		} else {
-			res.redirect('/posts' + req.params.id); 
+			res.redirect('/posts/' + req.params.id); 
 		}
 	});
 }); 
 //Destroy
-app.delete("/posts/:id", (req, res) => {
+app.delete('/posts/:id', (req, res) => {
 	Post.findByIdAndRemove(req.params.id, (err) => {
 		if(err){
-			res.redirect("/posts");
+			res.redirect('/posts');
 		} else {
-			res.redirect("/posts"); 
+			res.redirect('/posts'); 
 		}
 	});
 });
 
-app.get("/posts", (req, res) => {
+app.get('/posts', (req, res) => {
 	Post.find({}, (err, posts) => {
 		if(err){
 			console.log(err);
@@ -102,6 +109,6 @@ app.get("/posts", (req, res) => {
 });
 //set up on port
 app.listen(9000, () => {
-	console.log("server is listening on port 9000"); 
+	console.log('server is listening on port 9000'); 
 }); 
 	

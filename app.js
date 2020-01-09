@@ -50,13 +50,56 @@ app.post('/posts', (req, res) => {
 	});
 });
 //Show
-
+app.get('/posts/:id', (req, res) => {
+	Post.findById(req.params.id, (err, foundPost) => {
+		if(err){
+			res.redirect('/posts');
+		} else {
+			res.render('show', {post: foundPost});
+		}
+	});
+}); 
 //Edit
-
+app.get('/posts/:id/edit', (req, res) => {
+	Post.findById(req.params.id, (err, foundPost) => {
+		if(err){
+			res.redirect('/posts');
+		} else {
+			res.render('show', {post: foundPost}); 
+		}
+	});
+});
 //Update
-
+app.put('/posts/:id', (req, res) => {
+	req.body.post.body = req.sanitize(req.body.post.body); 
+	Post.findByIdAndUpdate(req.params.id, req.body.post, (err, updatedPost) => {
+		if(err){
+			res.redirect('index');
+		} else {
+			res.redirect('/posts' + req.params.id); 
+		}
+	});
+}); 
 //Destroy
+app.delete("/posts/:id", (req, res) => {
+	Post.findByIdAndRemove(req.params.id, (err) => {
+		if(err){
+			res.redirect("/posts");
+		} else {
+			res.redirect("/posts"); 
+		}
+	});
+});
 
+app.get("/posts", (req, res) => {
+	Post.find({}, (err, posts) => {
+		if(err){
+			console.log(err);
+		}  else {
+			res.render('index', {posts: posts}); 
+		} 
+	});   
+});
 //set up on port
 app.listen(9000, () => {
 	console.log("server is listening on port 9000"); 

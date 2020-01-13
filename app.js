@@ -41,13 +41,13 @@ app.get('/', (req, res) => {
 	res.redirect('/posts'); 
 }); 
 //New
-app.get('/new', (req, res) => {
-	res.render('/posts/new'); 
+app.get('/posts/new', (req, res) => {
+	res.render('new'); 
 }); 
 //Create
 app.post('/posts', (req, res) => {
 	req.body.post.body = req.sanitize(req.body.post.body);
-	Post.create(req.post.blog, (err, newPost) => {
+	Post.create(req.body.post, (err, newPost) => {
 		if(err){
 			res.render('new');
 		} else {

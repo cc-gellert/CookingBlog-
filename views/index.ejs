@@ -1,13 +1,14 @@
 <% include ./partials/header %>
 <div>
-	<header>Cinnamon and Cumin's Cooking Blog</header>
+	<h1>Cinnamon and Cumin: the Blog</h1>
 </div>
 <div>
-	<% posts.forEach((post) => { %>
+	<% if(posts) { %>
+		<% posts.forEach((post) => { %>
 		<div>
-			<h3>
+			<h4>
 				<%= post.title %>
-			</h3>
+			</h4>
 			<img src='<%=post.image%>'>
 			<p>
 				<%=post.created.toDateString(); %>
@@ -18,5 +19,12 @@
 			<a href='/posts/<%=post._id%>'>Read More</a>
 		</div>
 	<% }); %>
+	<% } else { %>
+	<div>
+		<h3>
+			Uh oh! Looks like it's time to add some posts! 
+		</h3>	
+	</div>
+	<% } %> 
 </div>
 <% include ./partials/footer %> 

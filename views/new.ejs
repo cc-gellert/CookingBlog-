@@ -1,22 +1,22 @@
 <% include ./partials/header %>
-<header>Make a New Post</header>
-<div>
-	<form action='/posts' method='POST'>
-		<div>
-			<label>Post Title</label>
-			<input type='text' name='post[title]' placeholder='title'>
-		</div>
-		<div>
-			<label>Image</label>
-			<input type='text' name='post[image]' placeholder='image link'>
-		</div>
-		<div>
-			<label>Post Content</label>
-			<textarea name='post[body]' required></textarea>
-		</div>
-		<button>
-			Submit
-		</button>
+<div style="width: 75%; margin:auto;">
+	<h2>Make a New Post</h2>
+	<form action="/posts" method="POST">
+		<div class="form-group">
+    		<label for="title">Post Title</label>
+    		<input type="text" name='post[title]' class="form-control" id="title" required>
+  		</div>
+		<div class="form-group">
+    		<label for="image">Image Link</label>
+    		<input type="text" name='post[image]' class="form-control" id="image" required>
+  		</div>
+		<div class="form-group">
+			<label for="post-content">Post Content</label>
+			<textarea class="form-control" id="post-content" rows="7" name='post[body]' required></textarea>
+			<button style="margin-top: 10px" class="btn btn-outline-success">
+				Submit Post 
+			</button>
+	  	</div>
 	</form>
 </div>
 

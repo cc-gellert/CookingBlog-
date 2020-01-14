@@ -1,22 +1,18 @@
 <% include ./partials/header %>
-<div>
+<div class='container' style="">
 	<h1>Cinnamon and Cumin: the Blog</h1>
-</div>
-<div>
 	<% if(posts) { %>
 		<% posts.forEach((post) => { %>
-		<div>
+		<div style="padding-top:20px; padding-bottom:20px;">
 			<h4>
-				<%= post.title %>
+				<%= post.title %> - <%=post.created.toDateString(); %> 
 			</h4>
-			<img src='<%=post.image%>'>
+			<img src='<%=post.image%>' style="border-radius: 20%; height:500px; width:auto; padding-top:10px; padding-bottom:10px;">
 			<p>
-				<%=post.created.toDateString(); %>
+				<%=post.body.substring(0, 200)%>... 
 			</p>
-			<p>
-				<%=post.body%>... 
-			</p>
-			<a href='/posts/<%=post._id%>'>Read More</a>
+			<a class="btn btn-warning" style="text-decoration: none;" href='/posts/<%=post._id%>'>Read More</a>
+			<hr> 
 		</div>
 	<% }); %>
 	<% } else { %>

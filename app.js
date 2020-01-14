@@ -59,6 +59,7 @@ app.post('/posts', (req, res) => {
 app.get('/posts/:id', (req, res) => {
 	Post.findById(req.params.id, (err, foundPost) => {
 		if(err){
+			console.log(err); 
 			res.redirect('/posts');
 		} else {
 			res.render('show', {post: foundPost});

@@ -1,19 +1,21 @@
 <% include ./partials/header %> 
-<div>
+<div class='container' style='padding:20px;'>
+	<h2>
+		<%= post.title %> - <%= post.created.toDateString() %>
+	</h2>
+	<img src='<%= post.image %>' style="border-radius: 10%; height:600px; width:auto; padding-top:20px; padding-bottom:20px;">
 	<div>
-		<header>
-			<%= post.title %>
-		</header>
-		<img src='<%= post.image %>'>
-		<div>
-			<span><%= post.created.toDateString(); %></span>
-			<p>
-				<%= post.body; %>
-			</p>
-		</div>
-		<a href="/posts/:id/edit">Edit Post</a>
+		<p>
+			<%= post.body; %>
+		</p>
+	</div>
+	<hr>
+	<!-- the cause of the fuss! Wrong link!!!! --> 
+	<div class='row' style='justify-content:space-between;'>
+		<a href="/posts/<%= post._id %>/edit" class="btn btn-warning btn-lg" style="text-decoration: none;">Edit Post</a>
+		<a href="/posts/" class="btn btn-success btn-lg" style="text-decoration: none;">Go Back</a> 
 		<form method="POST" action="/posts/<%= post._id %>?_method=DELETE" id="delete">
-			<button>
+			<button class="btn btn-danger btn-lg" style="text-decoration: none;">
 				Delete Post
 			</button>
 		</form>
